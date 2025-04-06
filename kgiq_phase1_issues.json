@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Create GitHub repository and enable Issues",
+    "body": "Set up a new repository called `kgiq-portfolio` on GitHub.\nEnable Issues and Discussions tabs."
+  },
+  {
+    "title": "Create GitHub Project Board (Kanban)",
+    "body": "Add a new GitHub Project (classic or beta).\nUse columns: To Do, In Progress, Done.\nLink it to your `kgiq-portfolio` repo."
+  },
+  {
+    "title": "Setup React project with Vite",
+    "body": "Initialize a new React app using Vite for fast dev experience.\nSteps:\n- Run `npm create vite@latest kgiq-portfolio --template react`\n- Install dependencies\n- Run dev server and verify setup"
+  },
+  {
+    "title": "Add Bootstrap and SCSS integration",
+    "body": "Configure Bootstrap 5 and your custom SCSS theme for styling consistency.\nSteps:\n- Install Bootstrap\n- Create `styles/main.scss`\n- Import Bootstrap + SCSS into `main.jsx`"
+  },
+  {
+    "title": "Set up basic folder structure",
+    "body": "Create `/components`, `/pages`, `/data`, and `/assets` folders to organize the app.\nEnsure consistent structure for all project modules."
+  },
+  {
+    "title": "Configure React Router with initial routes",
+    "body": "Set up routes for:\n- `/` (Home)\n- `/resume`\n- `/projects`\n- `/contact`\n- `/store` (placeholder)\nUse `react-router-dom`."
+  },
+  {
+    "title": "Build `<Navbar />` and `<Footer />` components",
+    "body": "Migrate your existing Bootstrap nav and footer to React components.\nEnsure active link highlights and mobile nav toggle work properly."
+  },
+  {
+    "title": "Migrate Hero section to `<Hero />` component",
+    "body": "Rebuild the hero from your static resume as a reusable component in React.\nInclude image, name, tagline, and CTA buttons."
+  },
+  {
+    "title": "Deploy MVP to Hostinger via webhook",
+    "body": "Bundle the app (`npm run build`) and verify webhook-based deployment to Hostinger.\nConfirm that navigation, styling, and Hero section render properly."
+  }
+]
