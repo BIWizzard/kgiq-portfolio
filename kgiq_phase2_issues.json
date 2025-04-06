@@ -1,0 +1,43 @@
+[
+    {
+      "title": "Create sample project data file",
+      "body": "Add a new `projects.js` file inside `src/data/`.\nInclude fields like: `title`, `slug`, `summary`, `techStack`, `githubUrl`, and `demoUrl`."
+    },
+    {
+      "title": "Build `<ProjectCard />` component",
+      "body": "Create a reusable card component in `src/components/` that takes project data as props.\nDisplay image, title, summary, and links."
+    },
+    {
+      "title": "Implement `/projects` grid layout",
+      "body": "Use CSS grid or Bootstrap row/col to layout all projects in a grid view.\nRender using mapped `projects.js` data."
+    },
+    {
+      "title": "Add `/project/:slug` dynamic route",
+      "body": "Create a new page under `src/pages/ProjectDetail.jsx` that fetches project by slug.\nDisplay full content with conditional logic."
+    },
+    {
+      "title": "Add sample images to `/assets`",
+      "body": "Store thumbnail and detail view images for at least 3 sample projects inside `src/assets/`.\nReference them in the data file."
+    },
+    {
+      "title": "Add category filters to projects view",
+      "body": "Allow filtering by category or tech tag.\nConsider dropdown or pill-style buttons to toggle filter state."
+    },
+    {
+      "title": "Add fallback 404 page",
+      "body": "Create a simple `NotFound.jsx` component under `src/pages/` and route to it for unknown paths."
+    },
+    {
+      "title": "Setup unit testing with Vitest",
+      "body": "Install Vitest + React Testing Library.\nConfigure basic `vitest.config.js` and add example test file in `__tests__/`."
+    },
+    {
+      "title": "Write tests for `<ProjectCard />`",
+      "body": "Verify it renders title, summary, and links.\nTest with different sets of mock props using Vitest."
+    },
+    {
+      "title": "Implement Resume page with Markdown",
+      "body": "Add `Resume.md` to `src/data/` and render it via a Markdown parser (e.g. `react-markdown`).\nLink from Navbar to `/resume`."
+    }
+  ]
+  
