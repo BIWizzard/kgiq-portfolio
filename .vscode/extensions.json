@@ -1,0 +1,16 @@
+{
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "dsznajder.es7-react-js-snippets",
+      "burkeholland.simple-react-snippets",
+      "christian-kohler.path-intellisense",
+      "wix.vscode-import-cost",
+      "eamodio.gitlens",                        // Git lens for better blame/history
+      "pkief.material-icon-theme",             // Clean file/folder icons
+      "bradlc.vscode-tailwindcss",             // Tailwind IntelliSense (if you use Tailwind later)
+      "github.vscode-pull-request-github",     // GitHub integration
+      "streetsidesoftware.code-spell-checker"  // Spell checker for blog content
+    ]
+  }
+  
