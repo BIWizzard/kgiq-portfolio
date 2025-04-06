@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Configure build and deploy preview",
+    "body": "Set up CI/CD preview deployments using Netlify or Vercel.\nSteps:\n- Connect GitHub repo\n- Configure build command and output directory\n- Test PR-based previews"
+  },
+  {
+    "title": "Add loading spinner or skeleton UI",
+    "body": "Improve UX by showing a loading indicator for route changes or slow loads.\nUse `react-loading` or custom skeletons."
+  },
+  {
+    "title": "Animate route transitions",
+    "body": "Integrate `framer-motion` to add transitions between pages.\nUse `AnimatePresence` and `motion.div` in layout wrapper."
+  },
+  {
+    "title": "Create contact form",
+    "body": "Add a form on `/contact` page to capture messages.\nOptions:\n- Netlify Forms\n- EmailJS\n- Custom backend (if needed)"
+  },
+  {
+    "title": "Scaffold placeholder `/store` page",
+    "body": "Design a basic layout for future tool sales.\nShow 2\u20133 placeholder product cards with 'Coming Soon' banners."
+  },
+  {
+    "title": "Add dark mode toggle",
+    "body": "Use CSS variables or Tailwind-style toggle to support light/dark themes.\nPersist preference using localStorage."
+  },
+  {
+    "title": "Generate sitemap and robots.txt",
+    "body": "Improve SEO by creating a basic `sitemap.xml` and `robots.txt` file.\nUse `vite-plugin-sitemap` or manual config."
+  },
+  {
+    "title": "Add analytics tracking",
+    "body": "Integrate privacy-friendly analytics.\nOptions: Google Analytics, Plausible, or Umami."
+  },
+  {
+    "title": "Scaffold blog module",
+    "body": "Prepare for future blogging section.\nCreate `/blog` route, dummy post layout, and placeholder Markdown content."
+  },
+  {
+    "title": "Run final MVP checklist",
+    "body": "Verify core functionality:\n- Responsive layout\n- Routing\n- Image and font loading\n- Issue list and project card rendering\n- Build works locally"
+  }
+]
