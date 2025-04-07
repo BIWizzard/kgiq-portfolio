@@ -5,5 +5,10 @@
     "source.fixAll.eslint": "explicit"
   },
   "eslint.validate": ["javascript", "javascriptreact"],
-  "prettier.requireConfig": true
+  "prettier.requireConfig": true,
+  "cSpell.words": [
+    "SUPABASE",
+    "VITE",
+    "XVCJ"
+  ]
 }
