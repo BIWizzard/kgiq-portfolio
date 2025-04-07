@@ -7,6 +7,8 @@
   "eslint.validate": ["javascript", "javascriptreact"],
   "prettier.requireConfig": true,
   "cSpell.words": [
+    "biwizzard",
+    "Hostinger",
     "SUPABASE",
     "VITE",
     "XVCJ"
