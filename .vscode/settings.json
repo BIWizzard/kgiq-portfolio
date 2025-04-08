@@ -12,5 +12,7 @@
     "SUPABASE",
     "VITE",
     "XVCJ"
-  ]
+  ],
+  "github.copilot.chat.scopeSelection": true,
+  "github.copilot.chat.agent.thinkingTool": true
 }
