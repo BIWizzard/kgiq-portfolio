@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+
+
 export default function Hero() {
   return (
     <div className="w-100 min-vh-100 d-flex flex-column justify-content-center align-items-center text-center px-4 bg-light">
