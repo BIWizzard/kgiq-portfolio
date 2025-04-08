@@ -1,4 +1,16 @@
+// src/pages/Home.jsx
+import Hero from '../components/Hero';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
 export default function Home() {
-    return <h1>🏠 Welcome to KG iQ Home</h1>;
-  }
-  
+  return (
+    <>
+      <Navbar />
+      <main className="container-fluid px-0">
+        <Hero />
+      </main>
+      <Footer />
+    </>
+  );
+}
