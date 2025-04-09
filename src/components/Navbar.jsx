@@ -1,25 +1,38 @@
 // src/components/Navbar.jsx
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import { ReactComponent as Logo } from '../assets/KG_iQ_logo.svg?react';
+import logoUrl from '../assets/KG_iQ_logo.svg';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+
+  const linkClass = (path) =>
+    `text-xl hover:text-kg-green ${
+      location.pathname === path
+        ? 'text-kg-green'
+        : 'text-kg-ash2'
+    }`;
+  
 
   return (
     <nav className="bg-kg-blue text-white px-6 py-3 shadow-md">
-      <div className="max-w-7xl mx-auto flex items-center justify-between h-16">
+      <div className="w-full flex items-center justify-between h-16">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2">
-          <Logo className="h-10 w-auto" />
-        </Link>
+        <div className="flex items-center space-x-2">
+          <img
+            src={logoUrl}
+            alt="KG iQ logo"
+            className="h-14 w-auto"
+          />
+        </div>
 
         {/* Nav Links (Desktop) */}
-        <div className="hidden md:flex space-x-6">
-          <Link to="/" className="text-kg-yellow hover:underline">Home</Link>
-          <Link to="/projects" className="text-kg-yellow hover:underline">Projects</Link>
-          <Link to="/resume" className="text-kg-yellow hover:underline">Resume</Link>
-          <Link to="/blog/first-post" className="text-kg-yellow hover:underline">Blog</Link>
+        <div className="hidden md:flex space-x-6 mr-14">
+          <Link to="/" className={linkClass('/')}>Home</Link>
+          <Link to="/projects" className={linkClass('/projects')}>Projects</Link>
+          <Link to="/resume" className={linkClass('/resume')}>Resume</Link>
+          <Link to="/blog/first-post" className={linkClass('/blog/first-post')}>Blog</Link>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -42,11 +55,11 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden mt-2 space-y-2 text-sm">
-          <Link to="/" className="block hover:text-kg-yellow">Home</Link>
-          <Link to="/projects" className="block hover:text-kg-yellow">Projects</Link>
-          <Link to="/resume" className="block hover:text-kg-yellow">Resume</Link>
-          <Link to="/blog/first-post" className="block hover:text-kg-yellow">Blog</Link>
+        <div className="md:hidden mt-2 space-y-2 text-sm px-2">
+          <Link to="/" className={linkClass('/')}>Home</Link>
+          <Link to="/projects" className={linkClass('/projects')}>Projects</Link>
+          <Link to="/resume" className={linkClass('/resume')}>Resume</Link>
+          <Link to="/blog/first-post" className={linkClass('/blog/first-post')}>Blog</Link>
         </div>
       )}
     </nav>

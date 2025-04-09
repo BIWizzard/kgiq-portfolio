@@ -23,18 +23,19 @@ export default function Projects() {
   return (
     <>
       <Navbar />
-      <main className="container py-5">
-        <h1 className="mb-4">Projects</h1>
-        {loading && <p>Loading...</p>}
-        {error && <p className="text-danger">❌ {error}</p>}
-        <div className="row">
-          {projects.map((project) => (
-            <div className="col-md-6 col-lg-4 mb-4" key={project.id}>
-              <ProjectCard {...project} />
-            </div>
-          ))}
-        </div>
-      </main>
+      <main className="container mx-auto px-4 py-8">
+  <h1 className="text-3xl font-bold mb-6">Projects</h1>
+
+  {loading && <p>Loading...</p>}
+  {error && <p className="text-red-500">❌ {error}</p>}
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {projects.map((project) => (
+      <ProjectCard key={project.id} {...project} />
+    ))}
+  </div>
+</main>
+
       <Footer />
     </>
   );
