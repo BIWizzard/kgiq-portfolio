@@ -2,36 +2,32 @@
 import PropTypes from 'prop-types';
 
 export default function ProjectCard({ title, summary, techStack, image, githubUrl, demoUrl }) {
+  const techs = techStack ? techStack.split(',').map(t => t.trim()) : [];
+
   return (
-    <div className="card h-100 shadow-sm">
-      {image && <img src={image} className="card-img-top" alt={title} />}
+    <div className="card h-100 shadow-sm border-0">
+      <div className="card-img-top bg-secondary bg-opacity-25 d-flex align-items-center justify-content-center text-center" style={{ height: '180px' }}>
+        <h5 className="text-muted">{image || title}</h5>
+      </div>
       <div className="card-body d-flex flex-column">
-        <h5 className="card-title">{title}</h5>
-        <p className="card-text">{summary}</p>
-
-        <div className="mt-auto">
-          {techStack?.length > 0 && (
-            <div className="mb-3">
-              {techStack.map((tech) => (
-                <span key={tech} className="badge bg-secondary me-1">
-                  {tech}
-                </span>
-              ))}
-            </div>
+        <h6 className="fw-bold">{title}</h6>
+        <p className="text-muted small mb-3">{summary}</p>
+        <div className="mb-3">
+          {techs.map((tech, index) => (
+            <span key={index} className="badge bg-light text-dark border me-1 mb-1">{tech}</span>
+          ))}
+        </div>
+        <div className="mt-auto d-flex gap-2">
+          {githubUrl && (
+            <a href={githubUrl} className="btn btn-sm btn-outline-dark" target="_blank" rel="noreferrer">
+              GitHub
+            </a>
           )}
-
-          <div>
-            {demoUrl && (
-              <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm me-2">
-                Live Demo
-              </a>
-            )}
-            {githubUrl && (
-              <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline-dark btn-sm">
-                View Code
-              </a>
-            )}
-          </div>
+          {demoUrl && (
+            <a href={demoUrl} className="btn btn-sm btn-primary" target="_blank" rel="noreferrer">
+              Live Demo
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -41,7 +37,7 @@ export default function ProjectCard({ title, summary, techStack, image, githubUr
 ProjectCard.propTypes = {
   title: PropTypes.string.isRequired,
   summary: PropTypes.string.isRequired,
-  techStack: PropTypes.arrayOf(PropTypes.string),
+  techStack: PropTypes.string,
   image: PropTypes.string,
   githubUrl: PropTypes.string,
   demoUrl: PropTypes.string,
