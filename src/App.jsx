@@ -8,6 +8,8 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/supabase-test" element={<TestSupabase />} />
+      <Route path="/projects" element={<Projects />} />
+
     </Routes>
   );
 }
