@@ -1,48 +1,71 @@
 // src/pages/Resume.jsx
+import { useEffect, useState } from 'react';
+import { supabase } from '../lib/supabaseClient';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import ExperienceCard from '../components/resume/ExperienceCard';
+
 
 export default function Resume() {
+  const [experiences, setExperiences] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchExperienceData() {
+      const { data: jobs, error: jobsError } = await supabase
+        .from('experience')
+        .select('*')
+        .order('order', { ascending: true });
+
+      const { data: bullets, error: bulletsError } = await supabase
+        .from('experience_bullets')
+        .select('*');
+
+      if (jobsError || bulletsError) {
+        console.error('Error fetching data:', jobsError || bulletsError);
+        return;
+      }
+
+      const bulletsByJob = bullets.reduce((acc, bullet) => {
+        if (!acc[bullet.experience_id]) acc[bullet.experience_id] = [];
+        acc[bullet.experience_id].push(bullet.content);
+        return acc;
+      }, {});
+
+      const jobsWithBullets = jobs.map(job => ({
+        ...job,
+        bullets: bulletsByJob[job.id] || [],
+      }));
+
+      setExperiences(jobsWithBullets);
+      setLoading(false);
+    }
+
+    fetchExperienceData();
+  }, []);
+
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gradient-to-b from-[#1f2a38] via-[#1a222f] to-[#131a22] text-white px-4 py-10">
-        <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl font-bold mb-6 text-kg-yellow">Résumé</h1>
-
-          <section className="mb-10">
-            <h2 className="text-2xl font-semibold mb-2">Summary</h2>
-            <p className="text-gray-300">
-              Experienced BI Developer and Certified Data Geek with a passion for crafting beautiful, functional tools powered by React, Supabase, and AI.
-            </p>
-          </section>
-
-          <section className="mb-10">
-            <h2 className="text-2xl font-semibold mb-2">Skills</h2>
-            <ul className="list-disc pl-5 text-gray-300 space-y-1">
-              <li>SQL, DAX, Power BI, semantic modeling</li>
-              <li>React, Tailwind, Supabase</li>
-              <li>REST APIs, OpenAI API, Git & GitHub</li>
-            </ul>
-          </section>
-
-          <section className="mb-10">
-            <h2 className="text-2xl font-semibold mb-2">Experience</h2>
-            <div className="bg-white/5 rounded-lg p-4 mb-4">
-              <h3 className="text-xl text-kg-yellow font-semibold">Data Solutions Architect @ ACME Corp</h3>
-              <p className="text-sm text-gray-400">2022–Present</p>
-              <p className="text-gray-300 mt-2">
-                Leading data product development using Power BI, SQL, and React-based tooling to support strategic insights and operational efficiency.
-              </p>
-            </div>
-            <div className="bg-white/5 rounded-lg p-4">
-              <h3 className="text-xl text-kg-yellow font-semibold">BI Developer @ XYZ Inc</h3>
-              <p className="text-sm text-gray-400">2018–2022</p>
-              <p className="text-gray-300 mt-2">
-                Designed and maintained enterprise dashboards, integrated disparate data sources, and trained analysts in advanced Power BI techniques.
-              </p>
-            </div>
-          </section>
+      <main className="min-h-screen bg-gradient-to-br from-kg-blue to-kg-gray text-white px-6 py-10">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <h1 className="text-3xl font-bold mb-6 text-center text-sunglow">Professional Experience</h1>
+          {loading ? (
+            <p className="text-center text-gray-300">Loading...</p>
+          ) : (
+            experiences.map((job) => (
+              <ExperienceCard
+                key={job.id}
+                logo={job.logo_url}
+                company={job.company}
+                title={job.title}
+                location={job.location}
+                dates={`${job.start_date} → ${job.end_date || 'Present'}`}
+                bullets={job.bullets}
+              />
+            ))
+            
+          )}
         </div>
       </main>
       <Footer />
