@@ -1,0 +1,32 @@
+
+/* Common card base */
+.resume-card {
+  @apply relative rounded-xl p-6 border border-white/10 backdrop-blur-md bg-white/10 shadow-xl transition duration-300 hover:shadow-2xl hover:border-white/20 overflow-hidden;
+}
+
+/* Thin edge glow - Elegant */
+.resume-card-thin::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, rgba(59, 130, 246, 0.6), #c5e6a6);
+  border-top-left-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
+}
+
+/* Bold edge glow - Flashier */
+.resume-card-bold::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(to bottom, rgba(59, 130, 246, 1), #c5e6a6);
+  border-top-left-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+}

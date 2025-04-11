@@ -1,10 +1,8 @@
-
 // src/pages/Resume.jsx
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-
 
 export default function Resume() {
   const [experiences, setExperiences] = useState([]);
@@ -54,12 +52,11 @@ export default function Resume() {
     <>
       <Navbar />
       <main
-  className="min-h-screen bg-cover bg-no-repeat bg-center text-white px-6 py-10"
-  style={{
-    backgroundImage: "url('/images/Hero_BG.jpg')",
-  }}
->
-
+        className="min-h-screen bg-cover bg-no-repeat bg-center text-white px-6 py-10"
+        style={{
+          backgroundImage: "url('/images/Hero_BG.jpg')",
+        }}
+      >
         <div className="max-w-4xl mx-auto space-y-6">
           <h1 className="text-3xl font-bold mb-6 text-center text-sunglow">Professional Experience</h1>
           {loading ? (
@@ -70,7 +67,15 @@ export default function Resume() {
                 key={job.id}
                 className="relative rounded-xl p-6 border border-white/10 backdrop-blur-md bg-white/10 shadow-xl transition duration-300 hover:shadow-2xl hover:border-white/20 overflow-hidden"
               >
-                <div className="absolute inset-0 rounded-xl pointer-events-none bg-gradient-to-br from-kg-blue/10 to-kg-green/10 blur-xl" />
+                {/* Thin 3D edge with glow */}
+                <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-blue-400 to-[#c5e6a6]"></div>
+                <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-blue-500/30 to-transparent blur-sm"></div>
+
+                {/* Soft internal gradient */}
+                <div className="absolute inset-0 rounded-xl pointer-events-none bg-gradient-to-br from-blue-500/10 to-green-500/10 blur-xl" />
+                <div className="absolute inset-0 rounded-lg overflow-hidden opacity-30"
+                     style={{ background: "linear-gradient(to bottom right, rgba(255, 255, 255, 0.25), transparent 70%)", pointerEvents: "none" }}></div>
+
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center space-x-4">
