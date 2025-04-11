@@ -5,7 +5,6 @@ import tailwind from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 import postcssImport from 'postcss-import';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr()],
   css: {
