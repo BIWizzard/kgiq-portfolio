@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import ExperienceCard from '../components/resume/ExperienceCard';
-
 
 export default function Resume() {
   const [experiences, setExperiences] = useState([]);
@@ -54,17 +52,40 @@ export default function Resume() {
             <p className="text-center text-gray-300">Loading...</p>
           ) : (
             experiences.map((job) => (
-              <ExperienceCard
+              <div
                 key={job.id}
-                logo={job.logo_url}
-                company={job.company}
-                title={job.title}
-                location={job.location}
-                dates={`${job.start_date} → ${job.end_date || 'Present'}`}
-                bullets={job.bullets}
-              />
+                className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 shadow-md hover:shadow-lg transition duration-300"
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center space-x-4">
+                    {job.logo_url && (
+                      <div className="relative h-16 w-20 flex-shrink-0">
+                        {/* Optional gradient or overlay */}
+                        {/* <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-lg" /> */}
+                        <img
+                          src={job.logo_url}
+                          alt={`${job.company} logo`}
+                          className="h-16 w-auto max-w-[120px] object-contain drop-shadow-md relative z-10"
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <h2 className="text-xl font-semibold text-white">{job.company}</h2>
+                      <p className="text-sm text-kg-green">{job.title}</p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-300">
+                    {job.start_date} → {job.end_date || 'Present'}
+                  </p>
+                </div>
+                <p className="text-sm text-gray-400 mb-3">{job.location || 'Remote'}</p>
+                <ul className="list-disc list-inside space-y-1 text-sm text-ash-gray">
+                  {job.bullets.map((b, idx) => (
+                    <li key={idx}>{b}</li>
+                  ))}
+                </ul>
+              </div>
             ))
-            
           )}
         </div>
       </main>
