@@ -1,8 +1,10 @@
+
 // src/pages/Resume.jsx
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+
 
 export default function Resume() {
   const [experiences, setExperiences] = useState([]);
@@ -43,16 +45,20 @@ export default function Resume() {
   }, []);
 
   const formatDate = (dateStr) => {
-    if (!dateStr) return 'Present';
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    if (!dateStr) return '';
+    const options = { year: 'numeric', month: 'short' };
+    return new Date(dateStr).toLocaleDateString('en-US', options);
   };
 
   return (
     <>
       <Navbar />
-      <main className="min-h-screen px-6 py-10 text-white bg-fixed bg-cover bg-center"
-      style={{ backgroundImage: "url('/images/Hero_BG.jpg')" }}>
+      <main
+  className="min-h-screen bg-cover bg-no-repeat bg-center text-white px-6 py-10"
+  style={{
+    backgroundImage: "url('/images/Hero_BG.jpg')",
+  }}
+>
 
         <div className="max-w-4xl mx-auto space-y-6">
           <h1 className="text-3xl font-bold mb-6 text-center text-sunglow">Professional Experience</h1>
@@ -62,34 +68,37 @@ export default function Resume() {
             experiences.map((job) => (
               <div
                 key={job.id}
-                className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 shadow-md hover:shadow-lg transition duration-300"
+                className="relative rounded-xl p-6 border border-white/10 backdrop-blur-md bg-white/10 shadow-xl transition duration-300 hover:shadow-2xl hover:border-white/20 overflow-hidden"
               >
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center space-x-4">
-                    {job.logo_url && (
-                      <div className="relative h-28 w-32 flex-shrink-0">
-                        <img
-                          src={job.logo_url}
-                          alt={`${job.company} logo`}
-                          className="h-28 w-auto max-w-[180px] object-contain drop-shadow-md relative z-10 pl-1"
-                        />
+                <div className="absolute inset-0 rounded-xl pointer-events-none bg-gradient-to-br from-kg-blue/10 to-kg-green/10 blur-xl" />
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center space-x-4">
+                      {job.logo_url && (
+                        <div className="relative h-28 w-32 flex-shrink-0">
+                          <img
+                            src={job.logo_url}
+                            alt={`${job.company} logo`}
+                            className="h-28 w-auto max-w-[180px] object-contain drop-shadow-md relative z-10 pl-1"
+                          />
+                        </div>
+                      )}
+                      <div>
+                        <h2 className="text-xl font-semibold text-white">{job.company}</h2>
+                        <p className="text-sm text-kg-green">{job.title}</p>
                       </div>
-                    )}
-                    <div>
-                      <h2 className="text-xl font-semibold text-white">{job.company}</h2>
-                      <p className="text-sm text-kg-green">{job.title}</p>
                     </div>
+                    <p className="text-xs text-gray-300">
+                      {formatDate(job.start_date)} → {job.end_date ? formatDate(job.end_date) : 'Present'}
+                    </p>
                   </div>
-                  <p className="text-xs text-gray-300 text-right whitespace-nowrap">
-                    {formatDate(job.start_date)} → {formatDate(job.end_date)}
-                  </p>
+                  <p className="text-sm text-gray-400 mb-3">{job.location || 'Remote'}</p>
+                  <ul className="list-disc list-inside space-y-1 text-sm text-ash-gray">
+                    {job.bullets.map((b, idx) => (
+                      <li key={idx}>{b}</li>
+                    ))}
+                  </ul>
                 </div>
-                <p className="text-sm text-gray-400 mb-3">{job.location || 'Remote'}</p>
-                <ul className="list-disc list-inside space-y-1 text-sm text-ash-gray">
-                  {job.bullets.map((b, idx) => (
-                    <li key={idx}>{b}</li>
-                  ))}
-                </ul>
               </div>
             ))
           )}
