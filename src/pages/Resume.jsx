@@ -3,20 +3,10 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import ExperienceCard from '../components/resume/ExperienceCard';
 
 export default function Resume() {
   const [experiences, setExperiences] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const formatDate = (dateStr) => {
-    if (!dateStr) return 'Present';
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-    });
-  };
 
   useEffect(() => {
     async function fetchExperienceData() {
@@ -52,25 +42,53 @@ export default function Resume() {
     fetchExperienceData();
   }, []);
 
+  const formatDate = (dateStr) => {
+    if (!dateStr) return 'Present';
+    const date = new Date(dateStr);
+    return date.toLocaleString('default', { month: 'short', year: 'numeric' });
+  };
+
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gradient-to-br from-kg-blue to-kg-gray text-white px-6 py-10">
+      <main className="min-h-screen bg-gradient-to-br from-[#0e1b29] via-[#1e3350] to-[#0e1b29] text-white px-6 py-10">
         <div className="max-w-4xl mx-auto space-y-6">
           <h1 className="text-3xl font-bold mb-6 text-center text-sunglow">Professional Experience</h1>
           {loading ? (
             <p className="text-center text-gray-300">Loading...</p>
           ) : (
             experiences.map((job) => (
-              <ExperienceCard
+              <div
                 key={job.id}
-                logo={job.logo_url}
-                company={job.company}
-                title={job.title}
-                location={job.location}
-                dates={`${formatDate(job.start_date)} → ${formatDate(job.end_date)}`}
-                bullets={job.bullets}
-              />
+                className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 shadow-md hover:shadow-lg transition duration-300"
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center space-x-4">
+                    {job.logo_url && (
+                      <div className="relative h-28 w-32 flex-shrink-0">
+                        <img
+                          src={job.logo_url}
+                          alt={`${job.company} logo`}
+                          className="h-28 w-auto max-w-[180px] object-contain drop-shadow-md relative z-10 pl-1"
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <h2 className="text-xl font-semibold text-white">{job.company}</h2>
+                      <p className="text-sm text-kg-green">{job.title}</p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-300">
+                    {formatDate(job.start_date)} → {formatDate(job.end_date)}
+                  </p>
+                </div>
+                <p className="text-sm text-gray-400 mb-3">{job.location || 'Remote'}</p>
+                <ul className="list-disc list-inside space-y-1 text-sm text-ash-gray">
+                  {job.bullets.map((b, idx) => (
+                    <li key={idx}>{b}</li>
+                  ))}
+                </ul>
+              </div>
             ))
           )}
         </div>
