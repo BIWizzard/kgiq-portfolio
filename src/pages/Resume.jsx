@@ -45,13 +45,13 @@ export default function Resume() {
   const formatDate = (dateStr) => {
     if (!dateStr) return 'Present';
     const date = new Date(dateStr);
-    return date.toLocaleString('default', { month: 'short', year: 'numeric' });
+    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
   };
 
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gradient-to-br from-[#0e1b29] via-[#1e3350] to-[#0e1b29] text-white px-6 py-10">
+      <main className="min-h-screen px-6 py-10 bg-gradient-to-br from-[#0b1e34] to-[#152c46] text-white bg-[url('/src/assets/bg/grid.svg')] bg-cover bg-fixed">
         <div className="max-w-4xl mx-auto space-y-6">
           <h1 className="text-3xl font-bold mb-6 text-center text-sunglow">Professional Experience</h1>
           {loading ? (
@@ -78,7 +78,7 @@ export default function Resume() {
                       <p className="text-sm text-kg-green">{job.title}</p>
                     </div>
                   </div>
-                  <p className="text-xs text-gray-300">
+                  <p className="text-xs text-gray-300 text-right whitespace-nowrap">
                     {formatDate(job.start_date)} → {formatDate(job.end_date)}
                   </p>
                 </div>
