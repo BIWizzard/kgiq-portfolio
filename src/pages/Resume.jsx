@@ -51,7 +51,9 @@ export default function Resume() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen px-6 py-10 bg-gradient-to-br from-[#0b1e34] to-[#152c46] text-white bg-[url('/src/assets/bg/grid.svg')] bg-cover bg-fixed">
+      <main className="min-h-screen px-6 py-10 text-white bg-fixed bg-cover bg-center"
+      style={{ backgroundImage: "url('/images/Hero_BG.jpg')" }}>
+
         <div className="max-w-4xl mx-auto space-y-6">
           <h1 className="text-3xl font-bold mb-6 text-center text-sunglow">Professional Experience</h1>
           {loading ? (
