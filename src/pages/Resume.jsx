@@ -59,13 +59,14 @@ export default function Resume() {
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center space-x-4">
                     {job.logo_url && (
-                      <div className="relative h-20 w-24 flex-shrink-0">
+                      <div className="relative h-24 w-28 flex-shrink-0">
                       <img
                         src={job.logo_url}
                         alt={`${job.company} logo`}
-                        className="h-20 w-auto max-w-[140px] object-contain drop-shadow-md relative z-10 pl-1"
+                        className="h-24 w-auto max-w-[160px] object-contain drop-shadow-md relative z-10 pl-1"
                       />
                     </div>
+                    
                     
                     
                     )}
