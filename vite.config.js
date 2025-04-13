@@ -10,9 +10,8 @@ export default defineConfig({
     postcss: {
       plugins: [
         postcssImport,
-        require('@tailwindcss/postcss'), // inline usage here
-        autoprefixer
-      ]
+        autoprefixer,
+      ],
     },
     devSourcemap: true,
   },
