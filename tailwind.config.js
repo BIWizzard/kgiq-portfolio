@@ -2,7 +2,7 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {
@@ -14,9 +14,24 @@ export default {
         'kg-green2': '#bdd2a6',
         'kg-ash': '#b9bea5',
         'kg-ash2': '#a7aaa4',
-        'kg-wine': '#733041',
-      }
-    }
+        'kg-wine': '#733041'
+      },
+    },
   },
   plugins: [],
+  // 👇 Optional: If using a custom safelist
+  safelist: [
+    'rounded-xl',
+    'shadow-xl',
+    'border',
+    'border-white/10',
+    'hover:border-white/20',
+    'bg-white/10',
+    'bg-gradient-to-br',
+    'from-blue-500/10',
+    'to-green-500/10',
+    'text-sunglow',
+    'backdrop-blur-md',
+    'hover:shadow-2xl',
+  ],
 }

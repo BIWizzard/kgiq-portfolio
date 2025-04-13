@@ -14,5 +14,26 @@
     "XVCJ"
   ],
   "github.copilot.chat.scopeSelection": true,
-  "github.copilot.chat.agent.thinkingTool": true
+  "github.copilot.chat.agent.thinkingTool": true,
+
+  // ✅ Tailwind CSS IntelliSense support
+  "tailwindCSS.includeLanguages": {
+    "plaintext": "html",
+    "javascript": "javascript",
+    "javascriptreact": "javascript",
+    "typescript": "typescript",
+    "typescriptreact": "typescript"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.experimental.classRegex": [
+  "tw`([^`]*)", 
+  "tw=\"([^\"]*)", 
+  "tw={\"([^\"]*)\"}", 
+  "className=\"([^\"]*)\"",
+  "class=\"([^\"]*)\""
+]
+
 }
