@@ -1,0 +1,133 @@
+# 📚 Project Continuity Guide for KG iQ Portfolio App
+
+> This document provides full project context, current status, completed work, roadmap, technical stack, and working conventions to ensure any new session or contributor can resume progress efficiently.
+
+---
+
+# 🚀 Project Overview
+
+The **KG iQ Portfolio App** is a modern, glassmorphic, dark-mode-first React application originally conceived as a personal portfolio, with a defined growth path into a freelance business platform and ultimately a full SaaS BI product.
+
+**Phases:**
+
+- **Portfolio (Current Phase):** Showcase resume, projects, and a blog.
+- **Freelance (Next Phase):** Add client intake, dashboards, opportunity management.
+- **BI Platform (Future):** Build client-facing BI tools and admin capabilities.
+
+---
+
+# 🧩 Technical Stack
+
+| Layer              | Technology                                              |
+| ------------------ | ------------------------------------------------------- |
+| Frontend Framework | React (via Vite)                                        |
+| Styling            | Tailwind CSS (with custom utilities)                    |
+| Backend + Database | Supabase (DB, API, Auth)                                |
+| Hosting            | Netlify                                                 |
+| Language Policy    | JavaScript (TypeScript optional for scaling)            |
+| State Management   | Local state + Context API (potential for Zustand later) |
+| Data Fetching      | Supabase Client SDK                                     |
+| Testing Strategy   | Vitest + React Testing Library (planned)                |
+| Deployment/Secrets | `.env` locally, Netlify vars for production             |
+
+---
+
+# ✅ Completed Work
+
+| Area                      | Highlights                                                     |
+| ------------------------- | -------------------------------------------------------------- |
+| **Hero and Navbar**       | Dark-mode, glass blur, mobile optimized                        |
+| **Projects Page**         | Card layout, hover effects, Supabase data                      |
+| **Resume Page**           | Pulls job experience and bullets dynamically from Supabase     |
+| **Styling System**        | Fully custom Tailwind color tokens, gradients, animations      |
+| **State Management**      | Resume style toggler (refined vs beast mode) using Context API |
+| **Glassmorphism Effects** | 3D edge glow on cards using CSS-only solutions                 |
+| **Environments Setup**    | Cross-OS (PC/Mac) support with scripts                         |
+
+---
+
+# 📈 Roadmap: Remaining Work
+
+| Priority                              | Description                                                 |
+| ------------------------------------- | ----------------------------------------------------------- |
+| **Project Polishing**                 | Improve responsiveness, accessibility, polish mobile layout |
+| **Full Blog Setup**                   | CMS for posts (may use Supabase or external)                |
+| **Admin Dashboard (Freelance Phase)** | Intake forms, opportunity tracker                           |
+| **Authentication**                    | Supabase Auth + protected routes                            |
+| **Testing Implementation**            | Setup unit/integration tests                                |
+| **Light/Dark Mode Toggle**            | Via Tailwind theming                                        |
+| **Card-to-Website Linking**           | Clickable logos link to companies                           |
+| **Error Boundaries**                  | Catch and gracefully handle runtime errors                  |
+| **Enhanced Data Models**              | Normalize tags, add more relationships                      |
+| **Accessibility Compliance**          | Target WCAG AA standards                                    |
+| **Analytics**                         | Add lightweight usage tracking (later phase)                |
+
+---
+
+# 🧱 Key Working Conventions
+
+- Mobile-first design
+- Glassmorphism and soft UI as core visual themes
+- TailwindCSS enforced: class order conventions and custom tokens
+- Supabase as backend source of truth
+- Centralized env var handling (`.env`, Netlify)
+- Resilient data fetching (loading/error states)
+- Future-proof modularity for Freelance and BI phases
+
+---
+
+# 📦 Key Project Artifacts to Share
+
+When setting up a new session or agent, attach or reference these files:
+
+| Artifact                | Description                               |
+| ----------------------- | ----------------------------------------- |
+| `STYLE_GUIDE.md`        | Full color, typography, component rules   |
+| `COMPONENT_PATTERNS.md` | Component architecture and prop standards |
+| `BACKEND_GUIDE.md`      | Supabase structure, API conventions       |
+| `TESTING_GUIDE.md`      | Testing tools, coverage expectations      |
+| `vite.config.js`        | Current bundler and plugin setup          |
+| `index.css`             | Core Tailwind config + custom utilities   |
+| `supabaseClient.js`     | Configured Supabase connection            |
+| `.env.example`          | Correct format for environment variables  |
+| `README.md`             | General intro and setup guide             |
+
+(✅ You already have updated versions of all these based on recent work.)
+
+---
+
+# ⚡ Bonus: Summary of UX Philosophy
+
+- Glassmorphism is essential: subtle transparency, soft edges, muted backgrounds
+- Elegance over flashiness; transitions and hover states must feel smooth
+- Typography must prioritize legibility and spacing
+- Mobile must feel **just as premium** as desktop
+- Dark mode is default, but flexible for future light mode
+
+---
+
+# 🛡️ Cautionary Notes
+
+- Tailwind is upgraded for Vite 6+ compatibility (postcss plugins corrected)
+- Supabase URLs must be set correctly to avoid runtime failures
+- Styling toggle feature must respect context state (`ResumeStyleContext`)
+- Future state management should scale modularly — **no Redux boilerplate**
+
+---
+
+# 🗺️ Suggested Next Steps for New Contributors
+
+1. Set up `.env` file locally.
+2. Run `npm install` → `npm run dev`.
+3. Review all four core guide files.
+4. Pick up work from open roadmap tasks.
+5. Follow branch and PR standards: **small atomic commits preferred**.
+
+---
+
+# 📢 Final Words
+
+This is a living document and should be updated whenever major architecture, process, or scope changes are made.
+Consistency is key — clarity compounds over time.
+
+Welcome aboard 🚀
