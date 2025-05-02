@@ -103,3 +103,27 @@ html, body, #root {
 body {
   display: block;
 }
+
+
+
+/* Resume job description list styling */
+.job-description {
+  padding-left: 1.2rem;
+  margin-bottom: 0;
+}
+
+.job-description li {
+  margin-bottom: 0.5rem;
+  color: #F7FAFC;
+  font-size: 0.95em;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 1em;
+}
+
+.job-description li::before {
+  content: "•";
+  position: absolute;
+  left: -0.8em;
+  color: #a7aaa4; /* kg-ash2 - bullet color */
+}
