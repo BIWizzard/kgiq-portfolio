@@ -118,37 +118,51 @@ export default function ExperienceCard({ company, title, location, startDate, en
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Header with company info and dates */}
-      <div className="flex justify-between items-start mb-4">
-        <div className="flex items-center space-x-4">
-          {logo && (
-            <div className="h-16 w-16 bg-white/10 rounded-lg p-2 flex items-center justify-center">
+      {/* Two-column layout for header */}
+      <div className="flex flex-col md:flex-row gap-6 mb-4">
+        {/* Left column - MUCH LARGER LOGO */}
+        {logo && (
+          <div className="relative h-40 w-48 flex-shrink-0">
+            {/* Background glow effect */}
+            <div className="absolute inset-0 bg-white/5 rounded-xl blur-md"></div>
+            
+            {/* Logo container with gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent rounded-xl"></div>
+            
+            {/* Logo image */}
+            <div className="relative z-10 h-full w-full flex items-center justify-center p-3">
               <img 
                 src={logo} 
                 alt={`${company} logo`} 
-                className="max-h-full max-w-full object-contain drop-shadow-md"
+                className="max-h-32 max-w-40 object-contain drop-shadow-lg"
               />
             </div>
-          )}
-          <div>
-            <h3 className="text-xl font-semibold text-white">{title}</h3>
-            <p className="text-kg-green font-medium">{company}</p>
-            {location && <p className="text-sm text-kg-ash2">{location}</p>}
           </div>
-        </div>
-        <div className="text-right text-sm text-kg-ash2 whitespace-nowrap">
-          {formatDate(startDate)} — {formatDate(endDate)}
+        )}
+        
+        {/* Right column - Job info */}
+        <div className="flex-grow">
+          <div className="flex flex-col md:flex-row justify-between mb-3">
+            <div>
+              <h3 className="text-xl font-semibold text-white">{title}</h3>
+              <p className="text-kg-green font-medium text-lg">{company}</p>
+              {location && <p className="text-sm text-kg-ash2">{location}</p>}
+            </div>
+            <div className="text-sm text-kg-ash2 whitespace-nowrap mt-2 md:mt-0 md:text-right">
+              {formatDate(startDate)} — {formatDate(endDate)}
+            </div>
+          </div>
+          
+          {/* Bullets list */}
+          {bullets && bullets.length > 0 && (
+            <ul className="list-disc list-inside space-y-2 mb-4 text-kg-ash2 text-sm">
+              {bullets.map((bullet, index) => (
+                <li key={index} className="leading-relaxed">{bullet}</li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
-
-      {/* Bullets list */}
-      {bullets && bullets.length > 0 && (
-        <ul className="list-disc list-inside space-y-2 mb-4 text-kg-ash2 text-sm">
-          {bullets.map((bullet, index) => (
-            <li key={index} className="leading-relaxed">{bullet}</li>
-          ))}
-        </ul>
-      )}
 
       {/* Tools section with badges */}
       {toolsArray.length > 0 && (

@@ -1,7 +1,7 @@
 // src/components/Navbar.jsx
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import logoUrl from '../assets/KG_iQ_logo.svg';
+import logoUrl from '../assets/KGiQ_logo_transparent.svg';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
