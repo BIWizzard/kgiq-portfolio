@@ -88,7 +88,7 @@ export default function Resume() {
             </div>
           ) : (
             <>
-              {/* Add the debugger component - set isVisible to true during development, false in production */}
+              {/* Add the debugger component - set isVisible to false in production */}
               <ResumeDebugger experiences={experiences} isVisible={true} />
               
               <div className="space-y-6">
@@ -102,7 +102,7 @@ export default function Resume() {
                     start_date={job.start_date}
                     end_date={job.end_date}
                     bullets={job.bullets}
-                    order={job.order} // Pass order for debugging
+                    // Removed order prop since it's no longer used in ExperienceCard
                   />
                 ))}
               </div>

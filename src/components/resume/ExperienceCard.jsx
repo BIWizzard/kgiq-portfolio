@@ -10,8 +10,7 @@ export default function ExperienceCard({
   location, 
   start_date, 
   end_date, 
-  bullets,
-  order // Added order prop to help with debugging
+  bullets
 }) {
   const [logoError, setLogoError] = useState(false);
   
@@ -36,32 +35,33 @@ export default function ExperienceCard({
 
   return (
     <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300 text-white mb-6">
-      <div className="flex items-center space-x-4 mb-2">
-        {logoPath && !logoError ? (
-          <div className="flex items-center justify-center h-14 w-14 bg-white rounded-lg p-2 shadow-sm">
-            <img
-              src={logoPath}
-              alt={`${displayCompany} logo`}
-              className="max-h-full max-w-full object-contain drop-shadow"
-              onError={handleLogoError}
-            />
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center space-x-4">
+          {logoPath && !logoError ? (
+            <div className="relative h-28 w-32 flex-shrink-0">
+              <img
+                src={logoPath}
+                alt={`${displayCompany} logo`}
+                className="h-28 w-auto max-w-[180px] object-contain drop-shadow-md relative z-10 pl-1"
+                onError={handleLogoError}
+              />
+            </div>
+          ) : null}
+          <div>
+            <h2 className="text-xl font-semibold text-white">{displayCompany}</h2>
+            <p className="text-sm text-kg-green">{title}</p>
+            <p className="text-xs text-gray-400 mt-1">{location || 'Remote'}</p>
           </div>
-        ) : null}
-        <div>
-          <h3 className="text-lg font-semibold">{displayCompany}</h3>
-          <p className="text-sm text-kg-green">{title}</p>
         </div>
+        <p className="text-xs text-gray-300 text-right whitespace-nowrap">
+          {formatDate(start_date)} – {formatDate(end_date)}
+        </p>
       </div>
 
-      <div className="flex justify-between text-sm text-kg-ash2 mb-3">
-        <span>{location || 'Remote'}</span>
-        <span>{formatDate(start_date)} – {formatDate(end_date)}</span>
-      </div>
-      
       {bullets && bullets.length > 0 ? (
-        <ul className="list-disc list-inside space-y-1 text-sm">
+        <ul className="job-description">
           {bullets.map((item, index) => (
-            <li key={index} className="text-kg-ash2">{item}</li>
+            <li key={index}>{item}</li>
           ))}
         </ul>
       ) : null}
@@ -76,6 +76,5 @@ ExperienceCard.propTypes = {
   location: PropTypes.string,
   start_date: PropTypes.string,
   end_date: PropTypes.string,
-  bullets: PropTypes.arrayOf(PropTypes.string),
-  order: PropTypes.number
+  bullets: PropTypes.arrayOf(PropTypes.string)
 };
