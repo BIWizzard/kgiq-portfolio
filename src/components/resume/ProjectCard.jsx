@@ -1,6 +1,7 @@
 // src/components/resume/ProjectCard.jsx
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import TechBadge from '../ui/TechBadge';
 
 export default function ProjectCard({ title, summary, contributions, techstack, impact }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -14,28 +15,6 @@ export default function ProjectCard({ title, summary, contributions, techstack, 
   const techList = typeof techstack === 'string' 
     ? techstack.split(',').map(tech => tech.trim()) 
     : Array.isArray(techstack) ? techstack : [];
-
-  // Generate tech badge styles based on technology name
-  const getTechBadgeStyle = (tech) => {
-    const techColors = {
-      'Power BI': 'bg-kg-blue text-white',
-      'Azure SQL': 'bg-kg-blue text-white',
-      'Logic Apps': 'bg-kg-yellow text-black',
-      'DAX': 'bg-kg-gray text-white',
-      'Data Modeling': 'bg-kg-green text-black',
-      'RLS': 'bg-kg-ash text-black',
-      'UI/UX': 'bg-kg-wine text-white',
-      'Deployment Pipelines': 'bg-kg-wine text-white',
-      'Power BI Embedded': 'bg-kg-blue text-white',
-      'HTML': 'bg-kg-yellow text-black',
-      'CSS': 'bg-kg-blue text-white',
-      'Bootstrap': 'bg-kg-wine text-white',
-      'T-SQL': 'bg-kg-ash2 text-black',
-      'AWS': 'bg-kg-yellow text-black',
-    };
-    
-    return techColors[tech] || 'bg-kg-ash2 text-black';
-  };
 
   return (
     <div 
@@ -64,13 +43,7 @@ export default function ProjectCard({ title, summary, contributions, techstack, 
           <h6 className="text-sm font-semibold text-kg-ash2 mr-2 flex-shrink-0 pt-1">Tech:</h6>
           <div className="flex flex-wrap gap-2">
             {techList.map((tech, index) => (
-              <span 
-                key={index}
-                className={`text-xs px-2 py-1 rounded-full font-medium transition-all duration-200 
-                          ${getTechBadgeStyle(tech)} hover:scale-105 hover:shadow-sm border border-white/10`}
-              >
-                {tech}
-              </span>
+              <TechBadge key={index} tech={tech} />
             ))}
           </div>
         </div>
