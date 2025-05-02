@@ -89,7 +89,7 @@ export default function Resume() {
           ) : (
             <>
               {/* Add the debugger component - set isVisible to false in production */}
-              <ResumeDebugger experiences={experiences} isVisible={true} />
+              <ResumeDebugger experiences={experiences} isVisible={false} />
               
               <div className="space-y-6">
                 {experiences.map((job) => (
