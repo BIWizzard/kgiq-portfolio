@@ -1,2 +1,34 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Build outputs
+/dist
+/build
+dist-ssr
+*.local
+
+# Debug & Dev
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 .env
-import_issues.sh
+.env.*
+!.env.example
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Cache and temp files
+*.log
+.cache
+.temp
