@@ -1,6 +1,7 @@
 // src/ResumeOnly.jsx - Standalone Resume Application
 import { useEffect, useState } from 'react';
 import { supabase } from './lib/supabaseClient';
+import ResumeNavbar from './components/resume/ResumeNavbar';
 import ExperienceCard from './components/resume/ExperienceCard';
 import ResumeHero from './components/resume/ResumeHero';
 import SkillsSection from './components/resume/SkillsSection';
@@ -164,76 +165,79 @@ export default function ResumeOnly() {
   }, []);
 
   return (
-    <div className="min-h-screen text-white bg-fixed bg-cover bg-center"
-      style={{ backgroundImage: "linear-gradient(rgba(22, 28, 36, 0.8), rgba(22, 28, 36, 0.95)), url('/images/Hero_BG.jpg')" }}>
+    <>
+      <ResumeNavbar />
+      <main className="min-h-screen text-white bg-fixed bg-cover bg-center pt-16"
+        style={{ backgroundImage: "linear-gradient(rgba(22, 28, 36, 0.8), rgba(22, 28, 36, 0.95)), url('/images/Hero_BG.jpg')" }}>
 
-      {/* Resume Hero Section */}
-      <ResumeHero />
+        {/* Resume Hero Section */}
+        <ResumeHero />
       
-      {/* Experience Section */}
-      <section className="py-8">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center text-white">Professional Experience</h2>
-          
-          {loading ? (
-            <div className="text-center py-10">
-              <p className="text-lg text-gray-300 mb-2">Loading experience data...</p>
-              <div className="animate-pulse w-24 h-24 bg-kg-blue/50 rounded-full mx-auto"></div>
-            </div>
-          ) : error ? (
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-red-500/50">
-              <h3 className="text-red-400 font-semibold mb-2">Error Loading Data</h3>
-              <p className="text-white/80">{error}</p>
-              <p className="mt-4 text-sm">Please check your connection and try again.</p>
-            </div>
-          ) : experiences.length === 0 ? (
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6">
-              <p className="text-center text-kg-ash2">No experience entries found.</p>
-            </div>
-          ) : (
-            <div className="max-w-4xl mx-auto space-y-6">
-              {experiences.map((job) => (
-                <ExperienceCard
-                  key={job.id}
-                  logo_url={job.logo_url} 
-                  company={job.company}
-                  title={job.title}
-                  location={job.location}
-                  start_date={job.start_date}
-                  end_date={job.end_date}
-                  bullets={job.bullets}
-                  tools={job.tools}
-                  skills={job.skills}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+        {/* Experience Section */}
+        <section className="py-8">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-8 text-center text-white">Professional Experience</h2>
+            
+            {loading ? (
+              <div className="text-center py-10">
+                <p className="text-lg text-gray-300 mb-2">Loading experience data...</p>
+                <div className="animate-pulse w-24 h-24 bg-kg-blue/50 rounded-full mx-auto"></div>
+              </div>
+            ) : error ? (
+              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-red-500/50">
+                <h3 className="text-red-400 font-semibold mb-2">Error Loading Data</h3>
+                <p className="text-white/80">{error}</p>
+                <p className="mt-4 text-sm">Please check your connection and try again.</p>
+              </div>
+            ) : experiences.length === 0 ? (
+              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6">
+                <p className="text-center text-kg-ash2">No experience entries found.</p>
+              </div>
+            ) : (
+              <div className="max-w-4xl mx-auto space-y-6">
+                {experiences.map((job) => (
+                  <ExperienceCard
+                    key={job.id}
+                    logo_url={job.logo_url} 
+                    company={job.company}
+                    title={job.title}
+                    location={job.location}
+                    start_date={job.start_date}
+                    end_date={job.end_date}
+                    bullets={job.bullets}
+                    tools={job.tools}
+                    skills={job.skills}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
 
-      {/* Skills Section */}
-      <SkillsSection skillsByCategory={skillsByCategory} loading={loading} />
+        {/* Skills Section */}
+        <SkillsSection skillsByCategory={skillsByCategory} loading={loading} />
 
-      {/* Projects Section */}
-      <ProjectsSection projects={projects} loading={loading} />
+        {/* Projects Section */}
+        <ProjectsSection projects={projects} loading={loading} />
 
-      {/* Certifications Section */}
-      <CertificationsSection certifications={certifications} />
+        {/* Certifications Section */}
+        <CertificationsSection certifications={certifications} />
 
-      {/* Education Section */}
-      <EducationSection education={education} />
-      
-      {/* Contact Section */}
-      <ContactSection />
+        {/* Education Section */}
+        <EducationSection education={education} />
+        
+        {/* Contact Section */}
+        <ContactSection />
 
-      {/* Simple Footer */}
-      <footer className="bg-black/20 backdrop-blur-sm border-t border-white/10 py-6">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-kg-ash2 text-sm">
-            © 2025 Kenneth Graham. All Rights Reserved
-          </p>
-        </div>
-      </footer>
-    </div>
+        {/* Simple Footer */}
+        <footer className="bg-black/20 backdrop-blur-sm border-t border-white/10 py-6">
+          <div className="container mx-auto px-4 text-center">
+            <p className="text-kg-ash2 text-sm">
+              © 2025 Kenneth Graham. All Rights Reserved
+            </p>
+          </div>
+        </footer>
+      </main>
+    </>
   );
 }

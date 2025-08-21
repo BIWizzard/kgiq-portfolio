@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "build:resume": "vite build --config vite.config.resume.js",
-    "dev:resume": "vite --config vite.config.resume.js",
+    "dev:resume": "cp index-resume.html index.html && cp src/resume-main.jsx src/main.jsx && vite --port 5174",
+    "dev:resume:restore": "cp index-backup.html index.html && cp src/main-backup.jsx src/main.jsx",
     "lint": "eslint .",
     "preview": "vite preview"
   },
