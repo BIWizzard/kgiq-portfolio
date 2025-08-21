@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:resume": "vite build --config vite.config.resume.js && cp dist-resume/index-resume.html dist-resume/index.html && cp -r public/resume_logos dist-resume/",
+    "build:resume": "vite build --config vite.config.resume.js && cp dist-resume/index-resume.html dist-resume/index.html && cp -r public/resume_logos dist-resume/ && cp Kenneth_Graham_Resume.pdf dist-resume/",
     "dev:resume": "cp index-resume.html index.html && cp src/resume-main.jsx src/main.jsx && vite --port 5174",
     "dev:resume:restore": "cp index-backup.html index.html && cp src/main-backup.jsx src/main.jsx",
     "lint": "eslint .",
