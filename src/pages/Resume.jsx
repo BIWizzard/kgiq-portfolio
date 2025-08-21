@@ -24,7 +24,6 @@ export default function Resume() {
   useEffect(() => {
     async function fetchData() {
       try {
-        console.log('Fetching all resume data...');
         
         // Fetch experiences
         const { data: jobs, error: jobsError } = await supabase
@@ -33,7 +32,6 @@ export default function Resume() {
           .order('order', { ascending: true });
 
         if (jobsError) throw jobsError;
-        console.log('Jobs fetched:', jobs?.length || 0);
 
         // Fetch experience bullets
         const { data: bullets, error: bulletsError } = await supabase
@@ -41,7 +39,6 @@ export default function Resume() {
           .select('*');
 
         if (bulletsError) throw bulletsError;
-        console.log('Bullets fetched:', bullets?.length || 0);
 
         // Fetch skills
         const { data: skillsData, error: skillsError } = await supabase
@@ -51,7 +48,6 @@ export default function Resume() {
 
         // Process skills data
         if (!skillsError && skillsData) {
-          console.log('Skills fetched:', skillsData?.length || 0);
           // Process skills by category
           const skillsByCategory = skillsData.reduce((acc, skill) => {
             if (!acc[skill.category]) acc[skill.category] = [];
@@ -60,7 +56,6 @@ export default function Resume() {
           }, {});
           setSkillsByCategory(skillsByCategory);
         } else {
-          console.error("Error fetching skills:", skillsError);
           // Fallback skills data
           setSkillsByCategory({
             'BI & Analytics': ['Power BI (Desktop)', 'Power BI (Service)', 'Power BI (Embedded)', 'DAX Studio', 'Tabular Editor', 'Fabric'],
@@ -80,10 +75,8 @@ export default function Resume() {
 
         // Process projects data
         if (!projectsError && projectsData) {
-          console.log('Projects fetched:', projectsData?.length || 0);
           setProjects(projectsData);
         } else {
-          console.error("Error fetching projects:", projectsError);
           // Fallback projects data
           setProjects([
             {
@@ -169,7 +162,6 @@ export default function Resume() {
         setExperiences(jobsWithBullets);
         setLoading(false);
       } catch (err) {
-        console.error('Error fetching data:', err);
         setError(err.message);
         setLoading(false);
       }

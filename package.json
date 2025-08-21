@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:resume": "vite build --config vite.config.resume.js",
+    "dev:resume": "vite --config vite.config.resume.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
