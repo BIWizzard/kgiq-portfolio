@@ -105,6 +105,19 @@ SECRETS_SCAN_ENABLED = false
 **Solution:** 
 1. Copied logos to public folder: `cp -r src/assets/resume_logos public/`
 2. Added to build script: `&& cp -r public/resume_logos dist-resume/`
+3. **CRITICAL:** Updated Supabase database paths:
+   ```sql
+   UPDATE public.experience 
+   SET logo_url = REPLACE(logo_url, '/src/assets/resume_logos/', '/resume_logos/')
+   WHERE logo_url LIKE '/src/assets/%';
+   ```
+
+### Problem 9: Resume Download 404 Error
+**Issue:** Download Resume button returned "Page not found"  
+**Solution:** Added PDF copy to build script:
+```json
+"build:resume": "... && cp Kenneth_Graham_Resume.pdf dist-resume/"
+```
 
 ---
 
@@ -172,10 +185,12 @@ The resume dev server uses a temporary file swap system:
 - Each has its own entry point and configuration
 - Resume has no React Router, portfolio needs it
 
-### 3. Logo Paths in Database
-Supabase experience table has logo_url fields pointing to:
-`/src/assets/resume_logos/svg/[company]-logo.svg`
-These are copied to dist-resume during build
+### 3. Logo Paths in Database (UPDATED)
+Supabase experience table logo_url fields were updated from:
+- **OLD:** `/src/assets/resume_logos/svg/[company]-logo.svg`
+- **NEW:** `/resume_logos/svg/[company]-logo.svg`
+
+**CRITICAL:** Database paths changed via SQL update. Do not revert!
 
 ### 4. Console Logs Removed
 All console.log statements removed from Resume.jsx
@@ -207,7 +222,12 @@ npm run dev:resume:restore    # Restore after resume dev
 
 # Production builds
 npm run build                  # Portfolio to dist/
-npm run build:resume           # Resume to dist-resume/
+npm run build:resume           # Resume to dist-resume/ + logos + PDF
+```
+
+### Final Build Script (Complete)
+```json
+"build:resume": "vite build --config vite.config.resume.js && cp dist-resume/index-resume.html dist-resume/index.html && cp -r public/resume_logos dist-resume/ && cp Kenneth_Graham_Resume.pdf dist-resume/"
 ```
 
 ### Testing Builds
@@ -256,11 +276,12 @@ When continuing portfolio app development:
 - **Build Time:** <3 seconds
 - **Bundle Size:** 340KB (optimized)
 - **Deployment Time:** ~5 minutes total
-- **SSL Certificate:** Auto-provisioned
+- **SSL Certificate:** Auto-provisioned (Let's Encrypt)
 - **Mobile Responsive:** Yes
-- **Supabase Integration:** Working
-- **Download Resume:** Functional
-- **Company Logos:** Fixed and displaying
+- **Supabase Integration:** Working with logo path fixes
+- **Download Resume:** ✅ Working (PDF included in build)
+- **Company Logos:** ✅ Working (paths fixed in database)
+- **Final Status:** Fully functional at kenneth-graham.com
 
 ---
 
